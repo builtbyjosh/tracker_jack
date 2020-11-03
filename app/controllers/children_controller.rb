@@ -35,6 +35,20 @@ class ChildrenController < ApplicationController
   end
 
   delete '/children/:slug/delete' do
-
+    @child = Child.find_by_slug(params[:slug])
+    @child.delete
+    redirect to '/children'
   end
+
+  # delete '/tweets/:id/delete' do
+  #   if logged_in?
+  #       @tweet = Tweet.find_by_id(params[:id])
+  #       if @tweet && @tweet.user == current_user
+  #           @tweet.delete
+  #       end
+  #       redirect to '/tweets'
+  #   else
+  #       redirect to '/login'
+  #   end
+
 end

@@ -5,11 +5,16 @@
 <br>
 <br>
 <h3>Next Appointment:</h3>
-<p><%= @child.appointments.last %></p>
+
 <br>
 <br>
 <h3>Latest Milestone:</h3>
-<p><%= @child.milestones.last %></p>
 
-<p><a href="">Make a new Appointment</a></p>
-<p><a href="">Mark a new Milestone!</a></p>
+
+<p><a href="/appointments/new">Make a new Appointment</a></p>
+<p><a href="/milestones/new">Mark a new Milestone!</a></p>
+<p><a href="/children/<%= @child.name.downcase %>/edit">Edit Your childs Details</a></p>
+<form method="post" action="/children/<%=@child.name.downcase%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Remove From App">
+</form>
