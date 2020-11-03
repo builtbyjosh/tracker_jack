@@ -1,0 +1,13 @@
+<h1>Welcome <%= current_user.name %></h1>
+<br>
+<p><a href="/children/new">Add A Child</a></p>
+<br>
+<p><a href="/logout">Log Out</a></p>
+<br>
+<h3>Your children:</h3>
+
+
+<% @child.each do |c| %>
+    <p><%= c.name %></p>
+    <p><a href="/children/<%= c.name.downcase %>">View Child</a></p>
+<% end %>
