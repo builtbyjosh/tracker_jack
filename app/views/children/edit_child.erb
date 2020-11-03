@@ -1,1 +1,8 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h2>Edit Your Childs Details:</h2>
+
+<form method="post" action="/children/<%=@child.name.downcase%>">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="text" name="name" value="<%= @child.name %>">
+  <input type="datetime" name="dob" id="dob" value="<%= @child.dob %>">
+  <input type="submit" value="submit" id="submit">
+</form>
