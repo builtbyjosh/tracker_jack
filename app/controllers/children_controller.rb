@@ -37,17 +37,7 @@ class ChildrenController < ApplicationController
     redirect to "/children/#{@child.name.downcase}"
   end
 
-  # @tweet = Tweet.find_by_id(params[:id])
-  # if @tweet && @tweet.user == current_user
-  #     if @tweet.update(content: params[:content])
-  #         redirect to "/tweets/#{@tweet.id}"
-  #     else
-  #         redirect to "/tweets/#{@tweet.id}/edit"
-  #     end
-  #     else
-  #     redirect to '/tweets'
-  #     end
-  # end
+  
 
   delete '/children/:slug/delete' do
     @child = Child.find_by_slug(params[:slug])
@@ -55,15 +45,6 @@ class ChildrenController < ApplicationController
     redirect to '/children'
   end
 
-  # delete '/tweets/:id/delete' do
-  #   if logged_in?
-  #       @tweet = Tweet.find_by_id(params[:id])
-  #       if @tweet && @tweet.user == current_user
-  #           @tweet.delete
-  #       end
-  #       redirect to '/tweets'
-  #   else
-  #       redirect to '/login'
-  #   end
+  
 
 end
