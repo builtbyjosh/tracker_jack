@@ -17,7 +17,7 @@ class ChildrenController < ApplicationController
       redirect to '/children/new'
     else
       @child = current_user.children.create(:name => params[:name], :dob => params[:dob])      
-      redirect to '/index_child'
+      redirect to '/children'
     end
   end
 
