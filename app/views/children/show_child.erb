@@ -6,7 +6,9 @@
 <br>
 <div>
   <h3>Next Appointment:</h3>
-
+  <%if @appointment  %>
+    <p>On <%= @appointment.date %> at <%= @appointment.time %> with Dr.<%= @appointment.doctor %></p>
+  <% end  %>
   <button><a href="/children/<%= @child.name.downcase %>/appointments/new">Make a new Appointment</a></button>
   <button><a href="/children/<%= @child.name.downcase %>/appointments/">View All Upcoming Appointment</a></button>
 </div>
@@ -16,8 +18,10 @@
 <br>
 <div>
   <h3>Latest Milestone:</h3>
+  <% if @milestone  %>
   <p><%= @milestone.content %></p>
   <p>On <%= @milestone.date %></p>
+  <% end  %>
   <button><a href="/children/<%= @child.name.downcase %>/milestones/new">Mark a new Milestone!</a></button>
   <button><a href="/children/<%= @child.name.downcase %>/milestones/">View All Milestones!</a></button>
 
