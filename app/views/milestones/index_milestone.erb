@@ -1,1 +1,9 @@
-<h1>This is the Model's index page.</h1>
+<h1>Here are <%= @child.name %>'s milestones:</h1>
+<% @child.milestones.each do |m| %>
+
+<p>On <%= m.date %> </p>
+<br>
+<p><%= m.content %></p>
+<br>
+
+<% end  %>

@@ -1,1 +1,10 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Create a new Milestone for <%= @child.name %></h1>
+<form action="/children/<%= @child.name.downcase %>/milestones" method="post">
+<label for="date">What day did it happen on:</label>
+<input type="date" name="date" id="date">
+<br>
+<br>
+<label for="content">What did <%= @child.name %> accomplish:</label>
+<input type="text" name="content" id="content">
+<input type="submit" value="Submit">
+</form>

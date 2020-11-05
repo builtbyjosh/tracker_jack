@@ -37,16 +37,11 @@ class ChildrenController < ApplicationController
     @child = Child.find_by_slug(params[:slug])
     @child.update(name: params[:name], dob: params[:dob])
     redirect to "/children/#{@child.name.downcase}"
-  end
-
-  
+  end  
 
   delete '/children/:slug/delete' do
     @child = Child.find_by_slug(params[:slug])
     @child.delete
     redirect to '/children'
   end
-
-  
-
 end
