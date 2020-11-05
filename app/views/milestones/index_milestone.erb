@@ -3,8 +3,8 @@
 <br>
 <% @child.milestones.each do |m| %>
 <div>
-    <%= date = DateTime.parse(m.date.to_s) %>
-    <p>On <%= date.strftime('%w - %m/%d/%Y') %> </p>
+    <% date = DateTime.parse(m.date.to_s) %>
+    <p>On <%= date.strftime('%m/%d/%Y') %> </p>
     <p><%= m.content %></p>
     <b><a href="/children/<%= m.child.name.downcase %>/milestones/<%= m.id%>/edit">Edit this milestone</a></b>
     <br>
