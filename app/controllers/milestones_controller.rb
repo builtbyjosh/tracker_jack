@@ -1,5 +1,5 @@
 class MilestonesController < ApplicationController
-
+  
   # GET: /milestones
   get "/children/:slug/milestones" do
     @child = Child.find_by_slug(params[:slug])
@@ -24,22 +24,22 @@ class MilestonesController < ApplicationController
   end
 
   # GET: /milestones/5
-  get ":slug/milestones/:id" do
-    erb :"/milestones/show"
+  get "/children/:slug/milestones/:id" do
+    erb :"/milestones/show_milestone"
   end
 
   # GET: /milestones/5/edit
-  get ":slug/milestones/:id/edit" do
-    erb :"/milestones/edit"
+  get "/children/:slug/milestones/:id/edit" do
+    erb :"/milestones/edit_milestone"
   end
 
   # PATCH: /milestones/5
-  patch ":slug/milestones/:id" do
+  patch "/children/:slug/milestones/:id" do
     redirect "/milestones/:id"
   end
 
   # DELETE: /milestones/5/delete
-  delete ":slug/milestones/:id/delete" do
+  delete "/children/:slug/milestones/:id/delete" do
     redirect "/milestones"
   end
 end
