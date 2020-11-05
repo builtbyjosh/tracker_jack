@@ -44,10 +44,9 @@ class MilestonesController < ApplicationController
   end
 
   # DELETE: /milestones/5/delete
-  delete "/children/:slug/milestones/:id/delete" do
-    @child = Child.find_by_slug(params[:slug])
+  delete "/children/:slug/milestones/:id/delete" do    
     @milestone = Milestone.find_by_id(params[:id])
     @milestone.delete
-    redirect to "/children/#{@child.name.downcase}/milestones"    
+    redirect to "/children/#{params[:slug].downcase}/milestones"    
   end
 end
