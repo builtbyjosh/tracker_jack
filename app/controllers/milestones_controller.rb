@@ -3,7 +3,7 @@ class MilestonesController < ApplicationController
   # GET: /milestones
   get "/children/:slug/milestones" do
     @child = Child.find_by_slug(params[:slug])
-    erb :"/milestones/index_milestone"
+    erb :"milestones/index_milestone"
   end
 
   # GET: /milestones/new
