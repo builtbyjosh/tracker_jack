@@ -1,19 +1,30 @@
 <h1>Here is the information for <%= @child.name %></h1>
-
+<button><a href="/children/<%= @child.name.downcase %>/edit">Edit Your childs Details</a></button>
 <h3>Date of Birth:</h3>
 <p><%= @child.dob %></p>
 <br>
 <br>
-<h3>Next Appointment:</h3>
+<div>
+  <h3>Next Appointment:</h3>
+
+  <button><a href="/children/<%= @child.name.downcase %>/appointments/new">Make a new Appointment</a></button>
+  <button><a href="/children/<%= @child.name.downcase %>/appointments/">View All Upcoming Appointment</a></button>
+</div>
+
 
 <br>
 <br>
-<h3>Latest Milestone:</h3>
+<div>
+  <h3>Latest Milestone:</h3>
+  <p><%= @milestone.content %></p>
+  <p>On <%= @milestone.date %></p>
+  <button><a href="/children/<%= @child.name.downcase %>/milestones/new">Mark a new Milestone!</a></button>
+  <button><a href="/children/<%= @child.name.downcase %>/milestones/">View All Milestones!</a></button>
 
+</div>
+<br>
+<br>
 
-<button><a href="/children/<%= @child.name.downcase %>/appointments/new">Make a new Appointment</a></button>
-<button><a href="/children/<%= @child.name.downcase %>/milestones/new">Mark a new Milestone!</a></button>
-<button><a href="/children/<%= @child.name.downcase %>/edit">Edit Your childs Details</a></button>
 <form method="post" action="/children/<%=@child.name.downcase%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Remove From App">

@@ -24,7 +24,7 @@ class ChildrenController < ApplicationController
   get '/children/:slug' do
     @child = Child.find_by_slug(params[:slug])
     #@appointment = @child.appointments.last
-    #@milestone = @child.milestones.last
+    @milestone = @child.milestones.last
     erb :'children/show_child'
   end
 
