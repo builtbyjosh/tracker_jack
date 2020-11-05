@@ -25,21 +25,29 @@ class MilestonesController < ApplicationController
 
   # GET: /milestones/5
   get "/children/:slug/milestones/:id" do
+    @milestone = Milestone.find_by_id(params[:id])
     erb :"/milestones/show_milestone"
   end
 
   # GET: /milestones/5/edit
   get "/children/:slug/milestones/:id/edit" do
+    @milestone = Milestone.find_by_id(params[:id])
     erb :"/milestones/edit_milestone"
+    
   end
 
   # PATCH: /milestones/5
   patch "/children/:slug/milestones/:id" do
-    redirect "/milestones/:id"
+    @milestone = Milestone.find_by_id(params[:id])
+    @milestone.update(date: params[:date], content: params[:content])
+    redirect to "/children/#{@milestone.child.name.downcase}/milestones"
   end
 
   # DELETE: /milestones/5/delete
   delete "/children/:slug/milestones/:id/delete" do
-    redirect "/milestones"
+    @child = Child.find_by_slug(params[:slug])
+    @milestone = Milestone.find_by_id(params[:id])
+    @milestone.delete
+    redirect to "/children/#{@child.name.downcase}/milestones"    
   end
 end

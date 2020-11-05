@@ -1,1 +1,8 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h2>Edit Your Childs Milestone:</h2>
+
+<form method="post" action="/children/<%= @milestone.child.name %>/milestones/<%= @milestone.id%>">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="date" name="date" value="<%= @milestone.date %>">
+  <input type="text" name="content" id="content" value="<%= @milestone.content %>">
+  <input type="submit" value="submit" id="submit">
+</form>

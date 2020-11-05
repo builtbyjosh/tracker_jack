@@ -1,9 +1,18 @@
 <h1>Here are <%= @child.name %>'s milestones:</h1>
+<p><a href="/children/<%= @child.name.downcase %>/milestones/new">Mark a new Milestone!</a></p>
+<br>
 <% @child.milestones.each do |m| %>
-
-<p>On <%= m.date %> </p>
+<div>
+    <p>On <%= m.date %> </p>
+    <p><%= m.content %></p>
+    <b><a href="/children/<%= m.child.name.downcase %>/milestones/<%= m.id%>/edit">Edit this milestone</a></b>
+    <br>
+    <form method="post" action="/children/<%=@child.name.downcase%>/milestones/<%= m.id %>/delete">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete this milestone">
+    </form>
+</div>
 <br>
-<p><%= m.content %></p>
 <br>
-
+<br>
 <% end  %>
