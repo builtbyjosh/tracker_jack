@@ -47,7 +47,9 @@ class ChildrenController < ApplicationController
       else
         redirect to '/children'
       end
-    end
+    else
+      redirect to '/login'
+    end    
   end
 
   get '/children/:slug/edit' do
@@ -71,9 +73,9 @@ class ChildrenController < ApplicationController
         @child = Child.find_by_slug(params[:slug])
         if @child && @child.parent == current_user
           if @child.update(name: params[:name], dob: params[:dob])
-            redirect to "/children/#{@child.name.downcase}"
+            redirect to "/children/#{@child.slug}"
           else
-            redirect to "/children/#{@child.name.downcase}/edit"
+            redirect to "/children/#{@child.slug}/edit"
           end
         else
           redirect to '/children'
