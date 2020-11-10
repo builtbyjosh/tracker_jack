@@ -4,7 +4,11 @@ class MilestonesController < ApplicationController
   get "/children/:slug/milestones" do
     if logged_in?
       @child = Child.find_by_slug(params[:slug])
-      erb :"milestones/index_milestone"
+      if @child && @child.parent == current_user
+        erb :"milestones/index_milestone"
+      else
+        redirect '/children'
+      end
     else
       redirect to '/login'
     end
@@ -14,7 +18,11 @@ class MilestonesController < ApplicationController
   get "/children/:slug/milestones/new" do
     if logged_in?
       @child = Child.find_by_slug(params[:slug])
-      erb :"/milestones/new_milestone"
+      if @child && @child.parent == current_user
+        erb :"/milestones/new_milestone"
+      else
+        redirect to "/children/#{:slug}/milestones"
+      end
     else
       redirect to '/login'
     end
@@ -42,7 +50,7 @@ class MilestonesController < ApplicationController
       if @milestone && @milestone.child.parent == current_user
         erb :"/milestones/show_milestone"
       else
-        redirect to "/children/#{@milestone.child.slug}/milestones"
+        redirect to "/children"
       end
     else
       redirect to '/login'
