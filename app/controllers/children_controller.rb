@@ -36,15 +36,17 @@ class ChildrenController < ApplicationController
   get '/children/:slug' do
     if logged_in?
       @child = Child.find_by_slug(params[:slug])
-      if @child.appointment != nil 
-        @appointment = @child.appointment.last
+      if @child && @child.parent == current_user
+        if @child.appointment != nil 
+          @appointment = @child.appointment.last
+        end
+        if @child.milestones != nil
+          @milestone = @child.milestones.last
+        end
+        erb :'children/show_child'
+      else
+        redirect to '/children'
       end
-      if @child.milestones != nil
-        @milestone = @child.milestones.last
-      end
-      erb :'children/show_child'
-    else
-      redirect to '/login'
     end
   end
 

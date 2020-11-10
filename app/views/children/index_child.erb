@@ -9,5 +9,5 @@
 
 <% @child.each do |c| %>
     <p><%= c.name %></p>
-    <p><a href="/children/<%= c.name.downcase %>">View Child</a></p>
+    <p><a href="/children/<%= c.slug %>">View Child</a></p>
 <% end %>

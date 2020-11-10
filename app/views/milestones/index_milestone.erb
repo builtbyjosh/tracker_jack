@@ -1,14 +1,14 @@
 <h1>Here are <%= @child.name %>'s milestones:</h1>
-<p><a href="/children/<%= @child.name.downcase %>/milestones/new">Mark a new Milestone!</a></p>
+<p><a href="/children/<%= @child.slug %>/milestones/new">Mark a new Milestone!</a></p>
 <br>
 <% @child.milestones.each do |m| %>
 <div>
     <% date = DateTime.parse(m.date.to_s) %>
     <p>On <%= date.strftime('%m/%d/%Y') %> </p>
     <p><%= m.content %></p>
-    <b><a href="/children/<%= m.child.name.downcase %>/milestones/<%= m.id%>/edit">Edit this milestone</a></b>
+    <b><a href="/children/<%= m.child.slug %>/milestones/<%= m.id%>/edit">Edit this milestone</a></b>
     <br>
-    <form method="post" action="/children/<%=@child.name.downcase%>/milestones/<%= m.id %>/delete">
+    <form method="post" action="/children/<%=m.child.slug%>/milestones/<%= m.id %>/delete">
         <input id="hidden" type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Delete this milestone">
     </form>
