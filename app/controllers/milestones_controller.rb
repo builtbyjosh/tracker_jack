@@ -32,7 +32,7 @@ class MilestonesController < ApplicationController
   post "/children/:slug/milestones" do
     if logged_in?
       if params[:date] == "" || params[:content] == ""
-        redirect to '/children/new'
+        redirect to '/children/milestones/new'
       else
         @child = Child.find_by_slug(params[:slug])
         @child.milestones.create(:date => params[:date], :content => params[:content])      
@@ -100,7 +100,7 @@ class MilestonesController < ApplicationController
       if @milestone && @milestone.child.parent == current_user
         @milestone.delete
       end
-      redirect to "/children/#{params[:slug].downcase}/milestones"
+      redirect to "/children/#{:slug}/milestones"
     else
       redirect to '/login'
     end

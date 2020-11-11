@@ -1,5 +1,5 @@
 <h1>Create a new Milestone for <%= @child.name %></h1>
-<form action="/children/<%= @child.name.downcase %>/milestones" method="post">
+<form action="/children/<%= @child.slug %>/milestones" method="post">
 <label for="date">What day did it happen on:</label>
 <input type="date" name="date" id="date">
 <br>
