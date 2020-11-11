@@ -15,15 +15,15 @@
   </head>
   <body>
     <div class="wrapper">
-     <% if logged_in?  %>
-    <div class="nav">
-      <ul>
-        <li>Welcome <%= current_user.name %></li>
-        <li><a href="/children">Home</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </div>
-  <% end %>
+    <% if logged_in?  %>
+      <div class="nav">
+        <ul>
+          <li>Welcome <%= current_user.name %></li>
+          <li><a href="/children">Home</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    <% end %>
 
         <%= yield %>
 
