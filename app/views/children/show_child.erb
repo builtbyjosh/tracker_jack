@@ -9,8 +9,8 @@
   <%if @appointment  %>
     <p>On <%= @appointment.date %> at <%= @appointment.time %> with Dr.<%= @appointment.doctor %></p>
   <% end  %>
-  <button><a href="/children/<%= @child.name.downcase %>/appointments/new">Make a new Appointment</a></button>
-  <button><a href="/children/<%= @child.name.downcase %>/appointments/">View All Upcoming Appointment</a></button>
+  <button><a href="/children/<%= @child.slug %>/appointments/new">Make a new Appointment</a></button>
+  <button><a href="/children/<%= @child.slug %>/appointments">View All Upcoming Appointment</a></button>
 </div>
 
 
@@ -22,14 +22,14 @@
   <p><%= @milestone.content %></p>
   <p>On <%= @milestone.date %></p>
   <% end  %>
-  <button><a href="/children/<%= @child.name.downcase %>/milestones/new">Mark a new Milestone!</a></button>
-  <button><a href="/children/<%= @child.name.downcase %>/milestones">View All Milestones!</a></button>
+  <button><a href="/children/<%= @child.slug %>/milestones/new">Mark a new Milestone!</a></button>
+  <button><a href="/children/<%= @child.slug %>/milestones">View All Milestones!</a></button>
 
 </div>
 <br>
 <br>
 
-<form method="post" action="/children/<%=@child.name.downcase%>/delete">
+<form method="post" action="/children/<%=@child.slug%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Remove From App">
 </form>
