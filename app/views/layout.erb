@@ -10,11 +10,20 @@
     <title>TrackerJack</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
     <div class="wrapper">
+     <% if logged_in?  %>
+    <div class="nav">
+      <ul>
+        <li>Welcome <%= current_user.name %></li>
+        <li><a href="/children">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  <% end %>
 
         <%= yield %>
 
