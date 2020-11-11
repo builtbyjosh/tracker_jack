@@ -26,7 +26,8 @@ Listening on 127.0.0.1:9393, CTRL+C to stop
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+This was created using the Corneal Gem. Which can be found: https://github.com/thebrianemory/corneal
 
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://opensource.org/licenses/MIT)
