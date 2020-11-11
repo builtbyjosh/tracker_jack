@@ -1,37 +1,109 @@
 class AppointmentsController < ApplicationController
 
   # GET: /appointments
-  get "/appointments" do
-    erb :"/appointments/index.html"
+  get "/children/:slug/appointments" do
+    if logged_in?
+      @child = Child.find_by_slug(params[:slug])
+      if @child && @child.parent == current_user
+        erb :"/appointments/index_appointment"
+      else
+        redirect to "/children"
+      end
+    else 
+      redirect to "/login"
+    end    
   end
 
   # GET: /appointments/new
-  get "/appointments/new" do
-    erb :"/appointments/new.html"
+  get "/children/:slug/appointments/new" do
+    if logged_in?
+      @child = Child.find_by_slug(params[:slug])
+      if @child && @child.parent == current_user
+        erb :"/appointments/new_appointment"
+      else
+        redirect to '/children'
+      end
+    else
+      redirect to '/login'
+    end    
   end
 
   # POST: /appointments
-  post "/appointments" do
-    redirect "/appointments"
+  post "/children/:slug/appointments" do
+    if logged_in?
+      if params[:date] == "" || params[:time] == "" || params[:doctor] == ""
+        redirect to '/children/appointments/new'
+      else
+        @child = Child.find_by_slug(params[:slug])
+        #binding.pry
+        @child.appointment.create(date: params[:date], time: params[:time], doctor: params[:doctor])
+        redirect to "/children/#{@child.slug}/appointments"
+      end
+    else
+      redirect to '/login'
+    end
   end
 
   # GET: /appointments/5
-  get "/appointments/:id" do
-    erb :"/appointments/show.html"
+  get "/children/:slug/appointments/:id" do
+    if logged_in?
+      @appointment = Appointment.find_by_id(params[:id])
+      if @appointment && @appointment.child.parent == current_user
+        erb :"/appointments/show_appointment"
+      else
+        redirect to "/childrent/#{@appointment.child.slug}/appointments"
+      end
+    else
+      redirect to '/login'
+    end    
   end
 
   # GET: /appointments/5/edit
-  get "/appointments/:id/edit" do
-    erb :"/appointments/edit.html"
+  get "/children/:slug/appointments/:id/edit" do
+    if logged_in?
+      @appointment = Appointment.find_by_id(params[:id])
+      if @appointment && @appointment.child.parent == current_user
+        erb :"/appointments/edit_appointment"
+      else
+        redirect to "/children/#{@appointment.child.slug}/appointments"
+      end
+    else
+      redirect to '/login'
+    end    
   end
 
   # PATCH: /appointments/5
-  patch "/appointments/:id" do
-    redirect "/appointments/:id"
+  patch "/children/:slug/appointments/:id" do
+    if logged_in?
+      if params[:date] == "" || params[:time] == "" || params[:doctor] == ""
+        redirect to "/children/#{:slug}/appointment/#{params[:id]}"
+      else
+        @appointment = Appointment.find_by_id(params[:id])
+        if @appointment && @appointment.child.parent == current_user
+          if @appointment.update(date: params[:date], time: params[:time], doctor: params[:doctor])
+            redirect to "/childrent/#{@appointment.child.slug}/appointments/#{params[:id]}"
+          else
+            redirect to "/children/#{:slug}/appointment/#{params[:id]}/edit"
+          end
+        else
+          redirect to  "?children/#{@appointment.child.slug}/appointments"
+        end
+      end
+    else
+      redirect to "/login"
+    end
   end
 
   # DELETE: /appointments/5/delete
-  delete "/appointments/:id/delete" do
-    redirect "/appointments"
+  delete "/children/:slug/appointments/:id/delete" do
+    if logged_in?
+      @appointment = Appointment.find_by_id(params[:id])
+      if @appointment && @appointment.child.parent == current_user
+        @appointment.delete
+      end
+      redirect to "/children/#{:slug}/appointments"
+    else
+      redirect to '/login'
+    end
   end
 end

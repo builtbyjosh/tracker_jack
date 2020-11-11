@@ -1,1 +1,19 @@
-<h1>This is the Model's index page.</h1>
+<h1>Here are <%= @child.name %>'s Appointments</h1>
+<p><a href="/children/<%= @child.slug %>/appointments/new">Make a new appointment</a></p>
+<br>
+<% if @child.appointment %>
+    <% @child.appointment.each do |a| %>
+        <p><%= a.date.strftime('%m/%d%Y') %> at <%= a.time %></p>
+        <p>Appointment with Dr. <%= a.doctor %></p>
+        <br>
+
+        <a href="/children/<%= a.child.slug %>/appointments/<%= a.id%>/edit">Edit this appointment</a>
+        <br>
+        <form action="/children/<%= a.child.slug %>/appointments/<%= a.id %>/delete" method="post">
+            <input type="hidden" name="_method" id="hidden" value="DELETE">
+            <input type="submit" value="Delete this Appointment">
+        </form>
+        <br>
+        <br>
+    <% end  %>
+<% end  %>

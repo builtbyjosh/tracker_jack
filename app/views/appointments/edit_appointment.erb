@@ -1,1 +1,15 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit this appointment</h1>
+<form action="/childrent/<%= @appointment.child.slug %>/appointments/<%= @appointment.id%>%" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="date">Date of the appointment:</label>
+    <input type="date" name="date" id="date">
+    <br>
+    <label for="time">Time of the appointment:</label>
+    <input type="time" name="time" id="time">
+    <br>
+    <label for="doctor">Doctors Name:</label>
+    <input type="text" name="doctor" id="doctor">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>

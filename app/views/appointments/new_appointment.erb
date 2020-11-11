@@ -1,1 +1,13 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Create a new Appointment for <%= @child.name %></h1>
+<form action="/children/<%= @child.slug %>/appointments" method="post">
+    <label for="date">Next Appointment Date:</label>
+    <input type="date" name="date" id="date">
+    <br>
+    <label for="time">Time of Appointment:</label>
+    <input type="time" name="time" id="time">
+    <br>
+    <label for="doctor">Name of Doctor:</label>
+    <input type="text" name="doctor" id="doctor">
+    <br>
+    <input type="submit" value="Submit">
+</form>
