@@ -5,7 +5,7 @@ Tracker Jack is a simple application that allows a parent to trach their childre
 
 ## Installation
 
-First clone the github repository. Then sse the terminal to install Tracker Jack.
+First clone the github repository. Then use the terminal to install Tracker Jack.
 
 ```bash
 git clone https://github.com/builtbyjosh/tracker_jack.git
